@@ -1,108 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Place Your Order</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .form-container {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      width: 90%;
-      max-width: 450px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      animation: slideIn 1s ease;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-    }
-
-    .input-group {
-      position: relative;
-      margin-bottom: 25px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      outline: none;
-      transition: border-color 0.3s;
-      font-size: 1em;
-      background: none;
-    }
-
-    input:focus, textarea:focus {
-      border-color: #ff416c;
-    }
-
-    label {
-      position: absolute;
-      left: 15px;
-      top: 15px;
-      color: #aaa;
-      pointer-events: none;
-      transition: 0.3s ease all;
-    }
-
-    input:focus + label,
-    input:not(:placeholder-shown) + label,
-    textarea:focus + label,
-    textarea:not(:placeholder-shown) + label {
-      top: -10px;
-      left: 10px;
-      font-size: 0.8em;
-      color: #ff416c;
-      background: white;
-      padding: 0 5px;
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #ff416c;
-      color: white;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease all;
-    }
-
-    button:hover {
-      background: #ff4b2b;
-      transform: scale(1.05);
-    }
-
-    #msg {
-      text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
-      color: white;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Your Order</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .form-container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideIn 1s ease;
+  }
+  @keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  h2 { text-align: center; margin-bottom: 30px; color: #333; }
+  .input-group { position: relative; margin-bottom: 25px; }
+  input, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 1em;
+    background: none;
+  }
+  input:focus, textarea:focus { border-color: #ff416c; }
+  label {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    color: #aaa;
+    pointer-events: none;
+    transition: 0.3s ease all;
+  }
+  input:focus + label,
+  input:not(:placeholder-shown) + label,
+  textarea:focus + label,
+  textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8em;
+    color: #ff416c;
+    background: white;
+    padding: 0 5px;
+  }
+  button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #ff416c;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease all;
+  }
+  button:hover { background: #ff4b2b; transform: scale(1.05); }
+  #msg { text-align: center; margin-top: 15px; font-weight: bold; color: white; }
+</style>
 </head>
 <body>
   <div class="form-container">
@@ -130,24 +102,23 @@
   </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyMo-kaQdEEO8h4NwPl2QuqKQyXGrfpRh-9O4-KH3L4CDL90ocV1IaWo6hXKYOpALyNmQ/exec"; // paste your Google Script URL 
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxJXNRDgopGo3Xie_fgm8Vm1KOF5CsnAbl_5_gtifWoUNcvDBVN1sRukS1yLe6EwGVtnQ/exec"; // paste your Web App URL
 
     document.getElementById("orderForm").addEventListener("submit", async e => {
       e.preventDefault();
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
+      const formData = new FormData(e.target); // send FormData directly
 
       document.getElementById("msg").innerText = "Sending...";
-
       try {
         await fetch(scriptURL, {
           method: "POST",
-          body: JSON.stringify(data)
+          body: formData
         });
         document.getElementById("msg").innerText = "🎉 Order placed successfully!";
         e.target.reset();
       } catch (error) {
         document.getElementById("msg").innerText = "❌ Error sending order.";
+        console.error(error);
       }
     });
   </script>
