@@ -1,126 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Place Your Order</title>
+<title>Bëj Porosinë</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .form-container {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    width: 90%;
-    max-width: 450px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    animation: slideIn 1s ease;
-  }
-  @keyframes slideIn {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  h2 { text-align: center; margin-bottom: 30px; color: #333; }
-  .input-group { position: relative; margin-bottom: 25px; }
-  input, textarea {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    outline: none;
-    transition: border-color 0.3s;
-    font-size: 1em;
-    background: none;
-  }
-  input:focus, textarea:focus { border-color: #ff416c; }
-  label {
-    position: absolute;
-    left: 15px;
-    top: 15px;
-    color: #aaa;
-    pointer-events: none;
-    transition: 0.3s ease all;
-  }
-  input:focus + label,
-  input:not(:placeholder-shown) + label,
-  textarea:focus + label,
-  textarea:not(:placeholder-shown) + label {
-    top: -10px;
-    left: 10px;
-    font-size: 0.8em;
-    color: #ff416c;
-    background: white;
-    padding: 0 5px;
-  }
-  button {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #ff416c;
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease all;
-  }
-  button:hover { background: #ff4b2b; transform: scale(1.05); }
-  #msg { text-align: center; margin-top: 15px; font-weight: bold; color: white; }
+  body { margin:0; font-family:'Roboto',sans-serif; background: linear-gradient(135deg,#ff416c,#ff4b2b); display:flex; justify-content:center; align-items:center; height:100vh; }
+  .form-container { background:white; border-radius:20px; padding:40px; width:90%; max-width:450px; box-shadow:0 10px 40px rgba(0,0,0,0.2); animation:slideIn 1s ease; }
+  @keyframes slideIn { from{transform:translateY(-50px);opacity:0;} to{transform:translateY(0);opacity:1;} }
+  h2{text-align:center;margin-bottom:30px;color:#333;}
+  .input-group{position:relative;margin-bottom:25px;}
+  input,textarea{width:100%;padding:15px;border:2px solid #ddd;border-radius:10px;outline:none;transition:border-color 0.3s;font-size:1em;background:none;}
+  input:focus,textarea:focus{border-color:#ff416c;}
+  label{position:absolute;left:15px;top:15px;color:#aaa;pointer-events:none;transition:0.3s ease all;}
+  input:focus + label,input:not(:placeholder-shown) + label,textarea:focus + label,textarea:not(:placeholder-shown) + label{top:-10px;left:10px;font-size:0.8em;color:#ff416c;background:white;padding:0 5px;}
+  button{width:100%;padding:15px;border:none;border-radius:10px;background:#ff416c;color:white;font-size:1em;font-weight:bold;cursor:pointer;transition:0.3s ease all;}
+  button:hover{background:#ff4b2b;transform:scale(1.05);}
+  #msg{text-align:center;margin-top:15px;font-weight:bold;color:white;}
 </style>
 </head>
 <body>
   <div class="form-container">
-    <h2>Place Your Order</h2>
+    <h2>Bëj Porosinë</h2>
     <form id="orderForm">
-      <div class="input-group">
-        <input type="text" name="name" placeholder=" " required>
-        <label>Your Name</label>
-      </div>
-      <div class="input-group">
-        <input type="text" name="address" placeholder=" " required>
-        <label>Address</label>
-      </div>
-      <div class="input-group">
-        <input type="text" name="number" placeholder=" " required>
-        <label>Phone Number</label>
-      </div>
-      <div class="input-group">
-        <textarea name="order" placeholder=" " rows="4" required></textarea>
-        <label>Your Order</label>
-      </div>
-      <button type="submit">Submit Order</button>
+      <div class="input-group"><input type="text" name="name" placeholder=" " required><label>Emri</label></div>
+      <div class="input-group"><input type="text" name="address" placeholder=" " required><label>Numbri</label></div>
+      <div class="input-group"><textarea name="order" placeholder=" " rows="4" required></textarea><label>Libri që doni ta porositni dhe sa copë</label></div>
+      <button type="submit">Dërgo Porosinë</button>
     </form>
     <p id="msg"></p>
   </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxJXNRDgopGo3Xie_fgm8Vm1KOF5CsnAbl_5_gtifWoUNcvDBVN1sRukS1yLe6EwGVtnQ/exec"; // paste your Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxJXNRDgopGo3Xie_fgm8Vm1KOF5CsnAbl_5_gtifWoUNcvDBVN1sRukS1yLe6EwGVtnQ/exec";
 
     document.getElementById("orderForm").addEventListener("submit", async e => {
       e.preventDefault();
-      const formData = new FormData(e.target); // send FormData directly
+      const formData = new FormData(e.target);
 
-      document.getElementById("msg").innerText = "Sending...";
+      document.getElementById("msg").innerText = "Duke dërguar...";
       try {
-        await fetch(scriptURL, {
-          method: "POST",
-          body: formData
-        });
-        document.getElementById("msg").innerText = "🎉 Order placed successfully!";
-        e.target.reset();
+        const response = await fetch(scriptURL, { method: "POST", body: formData });
+        if(response.ok){
+          document.getElementById("msg").innerText = "🎉 Porosia u dërgua me sukses!";
+          e.target.reset();
+        } else {
+          document.getElementById("msg").innerText = "❌ Gabim gjatë dërgimit të porosisë.";
+        }
       } catch (error) {
-        document.getElementById("msg").innerText = "❌ Error sending order.";
+        document.getElementById("msg").innerText = "❌ Gabim gjatë dërgimit të porosisë.";
         console.error(error);
       }
     });
   </script>
 </body>
 </html>
+
